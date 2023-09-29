@@ -1,16 +1,24 @@
 import React, { useContext } from 'react'
 import { LembretesContext } from '../../common/context/lembretes'
+import { Formulario } from './styles';
 
 const AdicionarLembrete = () => {
     const { lembretes, pegaTexto, adicionaLembrete, texto } = useContext(LembretesContext);
+
+
+    function aoEnviar(event) {
+        event.preventDefault();
+        adicionaLembrete()
+    }
+
   return (
         <>
             <h1>Adicionar Lembretes</h1>
-            <section>
+            <Formulario onSubmit={aoEnviar}>
                 <label htmlFor="lembretes">Lembrete:</label>
-                <input onChange={(event) => pegaTexto(event.target.value)} type="text" name='lembretes'></input>
-                <button onClick={() => adicionaLembrete()}>Enviar</button>
-            </section>
+                <textarea onChange={(event) => pegaTexto(event.target.value)} value={texto} type="textarea" name='lembretes'></textarea>
+                <button type='submit'>Enviar</button>
+            </Formulario>
         </>
   )
 }

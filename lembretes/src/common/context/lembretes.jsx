@@ -27,8 +27,9 @@ export const LembretesProvider = ({ children }) => {
   }
 
   function adicionaLembrete () {
-    setLembretes([...lembretes, { "texto": texto, "id": idLembrete }])
-    setIdLembrete(idLembrete + 1)
+    setLembretes([...lembretes, { "texto": texto, "id": idLembrete }]);
+    setIdLembrete(idLembrete + 1);
+    setTexto("");
   }
 
   function excluirLembrete (id) {

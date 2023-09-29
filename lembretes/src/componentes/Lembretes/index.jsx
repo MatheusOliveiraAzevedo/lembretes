@@ -6,7 +6,6 @@ import { BiTrash } from "react-icons/bi";
 
 const Lembretes = () => {
     const { lembretes, excluirLembrete } = useContext(LembretesContext);
-    console.log(lembretes)
   return (
     <ContainerMasterLembretes>
         <h2>Lembretes</h2>
