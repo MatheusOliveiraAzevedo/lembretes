@@ -3,6 +3,8 @@ import { createGlobalStyle } from "styled-components"
 
 const EstilosGlobais = createGlobalStyle`
 
+
+
 html {
   line-height: 1.15; 
   -webkit-text-size-adjust: 100%; 
@@ -11,6 +13,7 @@ html {
   justify-content: center;
   background-color: #6c6b6bd6;
   color: white;
+  font-family: 'Raleway', sans-serif;
 }
 body {
   margin: 0;

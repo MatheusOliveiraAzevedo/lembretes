@@ -4,21 +4,27 @@ export const LembretesContext = createContext();
 
 export const LembretesProvider = ({ children }) => {
 
-    const [lembretes, setLembretes] = useState([]);
-    const [texto, setTexto] = useState("");
-    const [idLembrete, setIdLembrete] = useState(0)
+  const [lembretes, setLembretes] = useState([]);
+  const [texto, setTexto] = useState("");
+  const [corLembrete, setCorLembrete] = useState("#FFFFFF");
+  const [idLembrete, setIdLembrete] = useState(0)
 
   return (
     <LembretesContext.Provider
-    value={{
+      value={{
         lembretes,
         setLembretes,
         pegaTexto,
-        adicionaLembrete,
-        excluirLembrete
-    }}
+        excluirLembrete,
+        corLembrete,
+        setCorLembrete,
+        pegaCor,
+        trocaCor,
+        aoEnviar,
+        texto
+      }}
     >
-        {children}
+      {children}
     </LembretesContext.Provider>
   )
 
@@ -26,15 +32,25 @@ export const LembretesProvider = ({ children }) => {
     setTexto(texto)
   }
 
-  function adicionaLembrete () {
-    setLembretes([...lembretes, { "texto": texto, "id": idLembrete }]);
-    setIdLembrete(idLembrete + 1);
-    setTexto("");
+  function pegaCor(cor) {
+    setCorLembrete(cor)
   }
-
-  function excluirLembrete (id) {
+  
+  function excluirLembrete(id) {
     const excluido = lembretes.filter((lembrete) => id !== lembrete.id)
     setLembretes(excluido)
+  }
+  
+  function trocaCor(cor, lembrete) {
+    lembrete.cor = cor
+    pegaCor(cor)
+  }
+  
+  function aoEnviar(event) {
+    event.preventDefault();
+    setLembretes([...lembretes, { "texto": texto, "id": idLembrete, "cor": corLembrete }]);
+    setIdLembrete(idLembrete + 1);
+    setTexto("");
   }
 }
 

@@ -1,22 +1,20 @@
 import React, { useContext } from 'react'
 import { LembretesContext } from '../../common/context/lembretes'
-import { ContainerLembrete, Texto, Identificador, ContainerMasterLembretes } from './styles';
-import { BiTrash } from "react-icons/bi";
+import { BlocoLembretes, ContainerMasterLembretes, ListaVazia, TituloLembretes,  } from './styles';
+import InfoLembretes from '../InfoLembretes';
 
 
 const Lembretes = () => {
-    const { lembretes, excluirLembrete } = useContext(LembretesContext);
+  const { lembretes, excluirLembrete, corLembrete, pegaCor } = useContext(LembretesContext);
   return (
-    <ContainerMasterLembretes>
-        <h2>Lembretes</h2>
-        {lembretes.map((lembrete, index) => (
-            <ContainerLembrete key={index}>
-                <Texto>{lembrete.texto}</Texto>
-                <Identificador>{`#: ${lembrete.id}`}</Identificador>
-                <button onClick={() => excluirLembrete(lembrete.id)}><BiTrash/></button>
-            </ContainerLembrete>
-        ))}
-    </ContainerMasterLembretes>
+    <BlocoLembretes>
+      <TituloLembretes>Lembretes</TituloLembretes>
+      <ContainerMasterLembretes>
+        {lembretes.length !== 0 ? lembretes.map((lembrete, index) => (
+          <InfoLembretes key={index} cor={lembrete.cor} lembrete={lembrete} />
+        )) : <ListaVazia>Lista de Lembretes Vazio ainda :(</ListaVazia>}
+      </ContainerMasterLembretes>
+    </BlocoLembretes>
   )
 }
 
